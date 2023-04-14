@@ -20,7 +20,6 @@ void setup()
   voltmeter.setMode(SINGLESHOT);
   voltmeter.setRate(RATE_128);
   voltmeter.setGain(PAG_512);
-  Serial.println(F("Hello from a bCyber Sensor. Setup: Done!"));
 }
 
 void loop()
@@ -35,14 +34,19 @@ void loop()
   {
     tmp = 0, hum = 0;
   }
-  Serial.printf(
-      "Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fPa\r\n---\n", tmp,
-      hum, pressure);
 
   voltmeter.getValue();
   voltage_value = voltmeter.adc_raw * voltmeter.resolution * voltmeter.calibration_factor;
   // normalize to positive voltage
   if (voltage_value < 0) voltage_value = voltage_value * -1;
-  Serial.printf("Voltage Value: %1.2fV \n", voltage_value / 1000.0);
+  voltage_value = voltage_value / 1000.0;
+
+  Serial.printf(
+      // C = temperatur in Celsius
+      // H = humidity in percent
+      // P = air pressure in Pa
+      // V = battery current in V
+      "C:%2.1f\r\nH:%2.0f%\r\nP:%2.0f\r\nV:%1.2f\r\n", tmp,
+      hum, pressure, voltage_value);
   delay(2000);
 }
