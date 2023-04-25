@@ -41,12 +41,12 @@ void loop()
   if (voltage_value < 0) voltage_value = voltage_value * -1;
 
   Serial.printf(
-      // C = temperatur in Celsius
+      // C = temperature in Celsius * 10
       // H = humidity in percent
       // P = air pressure in Pa
       // V = battery current in mV
       // C,H,P,V
-      "%2.1f,%2.0f,%2.0f,%d\r\n",
-      tmp, hum, pressure, voltage_value);
+      "%2.0f,%2.0f,%2.0f,%d\r\n",
+      tmp * 10, hum, pressure, voltage_value);
   delay(2000);
 }
