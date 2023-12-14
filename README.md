@@ -13,10 +13,13 @@ This Repo
 ## Usage
 Connect the ATOM Liste to a USB Port and Connect to the Serial Port.
 It will output the values every 2 seconds like this:
+
 ```
-C:21.6
-H:40
-P:100182
-V:12.21
+2160,40,100182,1221
 ```
+The values mean:
+- first value: temperature in Celsius * 10
+- second value: humidity in percent
+- third value: air pressure in Pa
+- fourth value: battery current in mV
 
